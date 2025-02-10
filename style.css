@@ -48,6 +48,20 @@ li a:hover {
     transform: scaleX(0);
 }
 
+/* LIRIK */
+
+section {
+    margin-left: 10px;
+}
+
+.reff {
+    margin-left: 1.5rem;
+}
+
+.limapuluh {
+    padding-top: 2rem;
+}
+
 @media (min-width: 320px) and (max-width: 767px) {
     html {
         font-size: 55%;
