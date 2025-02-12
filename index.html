@@ -5,13 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buku Lagu Pemoeja Bolu GKJ GUMULAN</title>
     <link rel="stylesheet" href="style.css">
+
+    <!-- FEATHER ICONS -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+
 </head>
 <body>
     <nav class="navbar">
-    
     <h2>Daftar Lagu</h2>
     <input type="text" id="searchBar" placeholder="Cari lagu..." onkeyup="cariLagu()">
-    
+    <button onclick="toggleDaftarIsi()" title="Tampilkan/Sembunyikan Daftar Isi">
+        <i data-feather="menu"></i>
+    </button>
+
+    <button onclick="toggleChord()" title="Tampilkan/Sembunyikan Chord">
+        <i data-feather="music"></i>
+    <!-- <button><a href="#">
+        <i data-feather="menu"></i>
+    </a></button> -->
     </nav>
 
     <div class="container">
@@ -1207,7 +1219,14 @@
 
     <!-- <div class="reff"> -->
 </div>
+
+    <!-- SCRIPT SYSTEM -->
     <script src="script.js"></script>
+
+    <!-- SCRIPT FEATHER ICONS -->
+    <script>
+        feather.replace();
+    </script>
 
 </body>
 </html>
