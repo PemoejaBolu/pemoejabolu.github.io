@@ -27,8 +27,8 @@ nav {
     justify-content: space-between;
     background-color: var(--dasar);
     color: var(--text);
-    /* z-index: 9999;
-    position: fixed; */
+    z-index: 9999;
+    position: fixed;
 }
 
 
@@ -42,6 +42,7 @@ nav {
 .container {
     display: flex;
     justify-content: space-between;
+    padding-top: 5rem;
 }
 .column {
     width: 48%;
@@ -88,7 +89,9 @@ section {
 }
 
 pre {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Calibri;
+    margin-left: 10px;
+    margin: 4px;
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
@@ -96,6 +99,14 @@ pre {
         font-size: 75%;
     }
     .limapuluh {
-        font-size: 2rem;
+        font-size: 1rem;
+    }
+
+
+    footer {
+        text-align: center;
+        justify-content: center;
+        justify-items: center;
+        align-items: center;
     }
 }
