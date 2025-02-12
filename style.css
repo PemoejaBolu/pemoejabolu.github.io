@@ -82,12 +82,12 @@ section {
 }
 
 .limapuluh {
-    padding-top: 2rem;
+    padding-top: 5rem;
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
     html {
-        font-size: 55%;
+        font-size: 60%;
     }
     .limapuluh {
         font-size: 2rem;
