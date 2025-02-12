@@ -27,6 +27,8 @@ nav {
     justify-content: space-between;
     background-color: var(--dasar);
     color: var(--text);
+    /* z-index: 9999;
+    position: fixed; */
 }
 
 
@@ -83,6 +85,10 @@ section {
 
 .limapuluh {
     padding-top: 5rem;
+}
+
+pre {
+    font-family: 'Times New Roman', Times, serif;
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
