@@ -12,10 +12,14 @@
 
 </head>
 <body>
-    <nav class="navbar">
+    <nav href="#" class="navbar">
         <img class="logo" src="img/logo1.jpg" alt="logo">
-        <input type="text" id="searchBar" placeholder="Cari lagu..." onkeyup="cariLagu()">
-    
+        <div class="search-container">
+            <input type="text" id="searchBar" placeholder="Cari lagu..." oninput="toggleClearButton()">
+            <button id="clearSearch" onclick="clearSearch()">✖</button>
+        </div>
+        
+
         <button onclick="cariLagu()" title="Cari Lagu">
             <i data-feather="search"></i>
         </button>
@@ -24,7 +28,7 @@
             <i data-feather="menu"></i>
         </button>
     
-        <button onclick="toggleTranspose()" title="Tampilkan/Sembunyikan Transpose">
+        <button id="toggleChord" onclick="toggleTranspose()" title="Tampilkan/Sembunyikan Transpose">
             <i data-feather="music"></i>
         </button>
     </nav>
@@ -318,32 +322,33 @@
 
 <div class="limapuluh-1">
     <section id="1" class="limapuluh">
-        <div class="lagu">
-            <h4>1.  BERSUKA DALAM TUHAN</h4>
+        <div id="#" class="lagu">
+            <h4>1. BERSUKA DALAM TUHAN</h4>
             <pre id="songText">
-                    D    A       G
-                    Hari Ini Hari Yang Telah <br><br>
-                       A          D
-                    Dijadikan Tuhan<br><br>
-                        A           G   A
-                    Mari Kita Bersuka (2x)<br><br>
-                             A       G
-                    Di dalam Tuhan… Bersuka…<br><br>
-                             A
-                    Di dalam Tuhan…!<br><br>
+                <span class="chord">D</span>    <span class="chord">A</span>       <span class="chord">G</span>
+                Hari Ini Hari Yang Telah <br><br>
+                <span class="chord">A</span>          <span class="chord">D</span>
+                Dijadikan Tuhan<br><br>
+                <span class="chord">A</span>           <span class="chord">G</span>   <span class="chord">A</span>
+                Mari Kita Bersuka (2x)<br><br>
+                <span class="chord">A</span>       <span class="chord">G</span>
+                Di dalam Tuhan… Bersuka…<br><br>
+                <span class="chord">A</span>
+                Di dalam Tuhan…!<br><br>
                 <div class="reff">
-                    D       Bm      G       C
+                    <span class="chord">D</span>       <span class="chord">Bm</span>      <span class="chord">G</span>       <span class="chord">C</span>
                     Bersuka, Bersuka Dalam Tuhan<br><br>
-                        Bm      F#m      G       A
+                    <span class="chord">Bm</span>      <span class="chord">F#m</span>      <span class="chord">G</span>       <span class="chord">A</span>
                     Mari Bersuka, Bersuka citalah<br><br>
-                    D       Bm       G        C
+                    <span class="chord">D</span>       <span class="chord">Bm</span>       <span class="chord">G</span>        <span class="chord">C</span>
                     Bersuka, Bersuka Dalam Tuhan<br><br>
-                            Bm          G   A   D
+                    <span class="chord">Bm</span>          <span class="chord">G</span>   <span class="chord">A</span>   <span class="chord">D</span>
                     S'karang Bersuka, Bersukacitalah<br><br>
-                </pre>
-            </div>
+                </div>
+            </pre>
         </div>
     </section>
+    
 
     <section id="2" class="limapuluh">
         <div class="lagu">

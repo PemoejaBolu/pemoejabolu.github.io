@@ -48,6 +48,10 @@ body {
     color: var(--terang);
 }
 
+#toggleChord {
+    margin-right: 1rem;
+}
+
 
 .logo { 
     margin-left: 1.3rem;
@@ -66,30 +70,34 @@ nav {
     position: fixed;
     padding: 10px 20px;
 }
-
-.navbar h2 {
-    font-size: 2rem;
-    padding: 5px 5px;
+.search-container {
+    position: relative;
+    display: inline-block;
 }
 
 #searchBar {
-    width: 200px;
-    padding: 5px;
+    width: 100px;
+    padding: 8px 20px 8px 8px; /* Spasi untuk tombol X */
+    font-size: 16px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-left: 10px;
+    border-radius: 4px;
 }
 
-
-.navbar h2 {
-    margin: 0;
+#clearSearch {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    display: none;
+    color: #888;
 }
 
-#searchBar {
-    width: 200px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+#clearSearch:hover {
+    color: #000;
 }
 
 .container {
@@ -97,6 +105,7 @@ nav {
     justify-content: space-between;
     padding-top: 5rem;
 }
+
 .column {
     width: 48%;
     display: none;
@@ -149,6 +158,10 @@ pre {
     font-family: Calibri;
     margin-left: 10px;
     margin: 4px;
+}
+
+.chord {
+    display: none;
 }
 
 /* FOOTER */

@@ -1,3 +1,30 @@
+
+// NAVBAR SYSTEM
+
+function toggleClearButton() {
+    let searchBar = document.getElementById("searchBar");
+    let clearButton = document.getElementById("clearSearch");
+
+    clearButton.style.display = searchBar.value.length > 0 ? "block" : "none";
+}
+
+function clearSearch() {
+    let searchBar = document.getElementById("searchBar");
+    searchBar.value = ""; // Hapus teks dalam input
+    toggleClearButton(); // Sembunyikan tombol X
+
+    // Panggil cariLagu() tanpa menampilkan daftar isi
+    let daftarIsi = document.querySelectorAll(".column");
+    let daftarLagu = document.querySelectorAll("#daftarLagu1 li, #daftarLagu2 li");
+    let lirikLagu = document.querySelectorAll(".lagu h4, .lagu pre");
+
+    // Reset tampilan lagu tapi biarkan daftar isi tetap tersembunyi
+    daftarLagu.forEach(li => li.style.display = "block");
+    lirikLagu.forEach(lirik => lirik.parentElement.parentElement.style.display = "block");
+}
+
+
+
 document.addEventListener("DOMContentLoaded", function() {
     let daftarIsi = document.querySelectorAll(".column");
     let transposeButtons = document.querySelector("footer.bawah");
@@ -21,14 +48,18 @@ document.addEventListener("DOMContentLoaded", function() {
                 targetElement.scrollIntoView({ behavior: "smooth" });
 
                 // Tambahkan efek highlight pada target agar lebih jelas
-                targetElement.style.backgroundColor = "yellow";
+                targetElement.style.backgroundColor = "#013E62";
+                targetElement.style.color = "#fff"; // Warna teks agar terlihat
+                
                 setTimeout(() => {
                     targetElement.style.backgroundColor = "transparent";
+                    targetElement.style.color = "#000"; // Kembalikan ke warna teks default
                 }, 1000);
             }
         });
     });
 });
+
 
 function cariLagu() {
     let input = document.getElementById("searchBar").value.toLowerCase();
@@ -91,22 +122,50 @@ function toggleTranspose() {
 
 // TRANSPOSE CHORD
 
-// Daftar akor dalam tangga nada
-const chords = [
-    "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"
-];
 
-// Fungsi untuk menaikkan atau menurunkan chord
-function transposeChord(chord, steps) {
-    let baseChord = chord.match(/[A-G]#?/)[0]; // Ambil nada dasar
-    let suffix = chord.replace(baseChord, ""); // Ambil akhiran (misal: m, 7, sus4)
-    
-    let index = chords.indexOf(baseChord);
-    if (index === -1) return chord; // Jika tidak ditemukan, kembalikan aslinya
-    
-    let newIndex = (index + steps + 12) % 12; // Hitung indeks baru
-    return chords[newIndex] + suffix;
-}
+
+
+
+
+
+// HIDE BUTON CHORD
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const songText = document.getElementById("songText");
+
+    // Format teks lagu untuk mendeteksi chord
+    if (songText) {
+        songText.innerHTML = formatSongText(songText.innerHTML);
+    }
+
+    // Ambil elemen chord yang telah diformat
+    let chordElements = document.querySelectorAll(".chord");
+    let transposeButtons = document.querySelector("footer.bawah");
+    let toggleButton = document.getElementById("toggleChord");
+
+    // Sembunyikan chord dan tombol transpose saat halaman dimuat
+    chordElements.forEach(chord => chord.style.display = "none");
+    transposeButtons.style.display = "none";
+
+    // Toggle untuk menampilkan/menyembunyikan chord dan tombol transpose
+    toggleButton.addEventListener("click", function () {
+        let isHidden = chordElements[0].style.display === "none"; // Cek status pertama
+
+        chordElements.forEach(chord => {
+            chord.style.display = isHidden ? "inline" : "none"; // Tampilkan/sembunyikan chord
+        });
+
+        transposeButtons.style.display = isHidden ? "block" : "none";
+
+        // Pastikan tombol transpose tetap bekerja setelah chord muncul
+        if (isHidden) {
+            updateTransposeListeners();
+        }
+    });
+
+    updateTransposeListeners(); // Pastikan event listener tetap aktif
+});
 
 // Fungsi untuk mendeteksi chord dalam teks dan menandainya
 function formatSongText(text) {
@@ -115,21 +174,31 @@ function formatSongText(text) {
     });
 }
 
+// Daftar akor dalam tangga nada
+const chordList = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+
+// Fungsi untuk menaikkan atau menurunkan chord
+function transposeChord(chord, steps) {
+    let baseChord = chord.match(/[A-G]#?/)[0]; // Ambil nada dasar
+    let suffix = chord.replace(baseChord, ""); // Ambil akhiran (misal: m, 7, sus4)
+
+    let index = chordList.indexOf(baseChord);
+    if (index === -1) return chord; // Jika tidak ditemukan, kembalikan aslinya
+
+    let newIndex = (index + steps + 12) % 12; // Hitung indeks baru
+    return chordList[newIndex] + suffix;
+}
+
 // Fungsi untuk mengganti semua chord tanpa merusak lirik
 function transposeAllChords(steps) {
-    const songText = document.getElementById("songText");
-    songText.innerHTML = songText.innerHTML.replace(/<span class="chord">(.*?)<\/span>/g, (match, chord) => {
-        return `<span class="chord">${transposeChord(chord, steps)}</span>`;
+    document.querySelectorAll(".chord").forEach(chordElement => {
+        let originalChord = chordElement.textContent;
+        chordElement.textContent = transposeChord(originalChord, steps);
     });
 }
 
-// Event listener untuk tombol transpose
-document.addEventListener("DOMContentLoaded", function () {
-    const songText = document.getElementById("songText");
-
-    // Format awal untuk mendeteksi chord
-    songText.innerHTML = formatSongText(songText.innerHTML);
-
+// Fungsi untuk mengupdate event listener transpose
+function updateTransposeListeners() {
     document.getElementById("transposeUp").addEventListener("click", function () {
         transposeAllChords(1);
     });
@@ -137,5 +206,4 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("transposeDown").addEventListener("click", function () {
         transposeAllChords(-1);
     });
-});
-
+}
