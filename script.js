@@ -139,32 +139,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-
-// HIDENNNNNNNNNNN DAFTAR ISIIIIIIIIIIIIIIIII
-
-document.addEventListener("DOMContentLoaded", function () {
-    // Ambil elemen daftar isi
-    const daftarIsi = document.querySelectorAll('.column');
-    daftarIsi.forEach(el => el.style.display = 'none'); // Sembunyikan daftar isi awalnya
-
-    // Fungsi untuk toggle daftar isi
-    function toggleDaftarIsi() {
-        daftarIsi.forEach(el => {
-            el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
-        });
-    }
-
-    // Fungsi untuk menyembunyikan hanya chord, bukan lirik
-    function toggleChord() {
-        document.querySelectorAll('.lagu pre').forEach(pre => {
-            pre.innerHTML = pre.innerHTML.replace(/<br>\s*([A-G][#b]?m?(maj7|7|sus4|dim)?)/g, "<br>"); // Menghapus chord
-        });
-    }
-
-    // Ambil tombol menu dan musik, lalu tambahkan event listener
-    const btnMenu = document.querySelector("button[title='Tampilkan/Sembunyikan Daftar Isi']");
-    const btnMusic = document.querySelector("button[title='Tampilkan/Sembunyikan Chord']");
-
-    if (btnMenu) btnMenu.addEventListener("click", toggleDaftarIsi);
-    if (btnMusic) btnMusic.addEventListener("click", toggleChord);
-});
