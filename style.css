@@ -43,15 +43,18 @@ body {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 18px;
-    margin-left: 10px;
+    font-size: 15px;
+    margin-left: 8x;
+    color: var(--terang);
 }
 
-h2 {
-    text-align: center;
-    margin-left: 5rem;
-    font-family: 'poppins';
-    font-size: 1rem;
+
+.logo { 
+    margin-left: 1.3rem;
+    margin-right: 1rem;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
 }
 
 nav {
