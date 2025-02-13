@@ -13,18 +13,24 @@
 </head>
 <body>
     <nav class="navbar">
-    <h2>Daftar Lagu</h2>
-    <input type="text" id="searchBar" placeholder="Cari lagu..." onkeyup="cariLagu()">
-    <button onclick="toggleDaftarIsi()" title="Tampilkan/Sembunyikan Daftar Isi">
-        <i data-feather="menu"></i>
-    </button>
-
-    <button onclick="toggleChord()" title="Tampilkan/Sembunyikan Chord">
-        <i data-feather="music"></i>
-    <!-- <button><a href="#">
-        <i data-feather="menu"></i>
-    </a></button> -->
+        <h2>Daftar Lagu</h2>
+        <input type="text" id="searchBar" placeholder="Cari lagu..." onkeyup="cariLagu()">
+    
+        <button onclick="cariLagu()" title="Cari Lagu">
+            <i data-feather="search"></i>
+        </button>
+    
+        <button onclick="toggleDaftarIsi()" title="Tampilkan/Sembunyikan Daftar Isi">
+            <i data-feather="menu"></i>
+        </button>
+    
+        <button onclick="toggleTranspose()" title="Tampilkan/Sembunyikan Transpose">
+            <i data-feather="music"></i>
+        </button>
     </nav>
+    
+    
+    
 
     <div class="container">
         <ul id="daftarLagu1" class="column">
@@ -1212,10 +1218,10 @@
 
 
 
-<footer class="bawah">
-    <button id="transposeUp">Naik (+1)</button>
-    <button id="transposeDown">Turun (-1)</button>
-</footer>
+    <footer class="bawah">
+        <button id="transposeUp">Naik (+1)</button>
+        <button id="transposeDown">Turun (-1)</button>
+    </footer>
 
     <!-- <div class="reff"> -->
 </div>

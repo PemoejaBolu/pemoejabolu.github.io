@@ -1,12 +1,70 @@
-function cariLagu() {
-    let input = document.getElementById('searchBar').value.toLowerCase();
-    let items = document.querySelectorAll('ul li');
+document.addEventListener("DOMContentLoaded", function() {
+    let daftarIsi = document.querySelectorAll(".column");
+    let transposeButtons = document.querySelector("footer.bawah");
+    
+    // Sembunyikan daftar isi dan tombol transpose saat halaman dimuat
+    daftarIsi.forEach(el => el.style.display = "none");
+    transposeButtons.style.display = "none";
+});
 
-    items.forEach(item => {
-        let text = item.textContent.toLowerCase();
-        item.classList.toggle('hidden', !text.includes(input));
+function cariLagu() {
+    let input = document.getElementById("searchBar").value.toLowerCase();
+    let daftarLagu = document.querySelectorAll("#daftarLagu1 li, #daftarLagu2 li");
+    let lirikLagu = document.querySelectorAll(".lagu h4, .lagu pre");
+
+    let found = false;
+
+    // Cari di daftar lagu
+    daftarLagu.forEach(function(li) {
+        if (li.textContent.toLowerCase().includes(input)) {
+            li.style.display = "block";
+            found = true;
+        } else {
+            li.style.display = "none";
+        }
+    });
+
+    // Cari di lirik lagu
+    lirikLagu.forEach(function(lirik) {
+        if (lirik.textContent.toLowerCase().includes(input)) {
+            lirik.parentElement.parentElement.style.display = "block";
+            found = true;
+        } else {
+            lirik.parentElement.parentElement.style.display = "none";
+        }
+    });
+
+    // Tampilkan daftar isi jika ada hasil pencarian
+    let daftarIsi = document.querySelectorAll(".column");
+    daftarIsi.forEach(function(container) {
+        if (found || input.length > 0) {
+            container.style.display = "block";
+        } else {
+            container.style.display = "none";
+        }
     });
 }
+
+function toggleDaftarIsi() {
+    let daftarIsi = document.querySelectorAll(".column");
+    daftarIsi.forEach(function(container) {
+        if (container.style.display === "none") {
+            container.style.display = "block";
+        } else {
+            container.style.display = "none";
+        }
+    });
+}
+
+function toggleTranspose() {
+    let transposeButtons = document.querySelector("footer.bawah");
+    if (transposeButtons.style.display === "none") {
+        transposeButtons.style.display = "block";
+    } else {
+        transposeButtons.style.display = "none";
+    }
+}
+
 
 
 // TRANSPOSEEEEEEEEEEEEEEEEEEEEE CHORDDDDDDDDDDDDDDDDDDDDDD
@@ -57,35 +115,4 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("transposeDown").addEventListener("click", function () {
         transposeAllChords(-1);
     });
-});
-
-
-// HIDENNNNNNNNNNN DAFTAR ISIIIIIIIIIIIIIIIII
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    // Ambil elemen daftar isi
-    const daftarIsi = document.querySelectorAll('.column');
-    daftarIsi.forEach(el => el.style.display = 'none'); // Sembunyikan daftar isi awalnya
-
-    // Fungsi untuk toggle daftar isi
-    function toggleDaftarIsi() {
-        daftarIsi.forEach(el => {
-            el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
-        });
-    }
-
-    // Fungsi untuk menyembunyikan hanya chord, bukan lirik
-    function toggleChord() {
-        document.querySelectorAll('.lagu pre').forEach(pre => {
-            pre.innerHTML = pre.innerHTML.replace(/<br>\s*([A-G][#b]?m?(maj7|7|sus4|dim)?)/g, "<br>"); // Menghapus chord
-        });
-    }
-
-    // Ambil tombol menu dan musik, lalu tambahkan event listener
-    const btnMenu = document.querySelector("button[title='Tampilkan/Sembunyikan Daftar Isi']");
-    const btnMusic = document.querySelector("button[title='Tampilkan/Sembunyikan Chord']");
-
-    if (btnMenu) btnMenu.addEventListener("click", toggleDaftarIsi);
-    if (btnMusic) btnMusic.addEventListener("click", toggleChord);
 });

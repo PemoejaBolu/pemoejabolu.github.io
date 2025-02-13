@@ -98,6 +98,7 @@ nav {
     width: 48%;
     display: none;
 }
+
 ul {
     list-style: none;
     padding: 0;
@@ -105,10 +106,12 @@ ul {
     border: 1px solid #ddd;
     padding: 10px;
 }
+
 li {
     padding: 8px;
     border-bottom: 1px solid #ddd;
 }
+
 li.hidden {
     display: none;
 }
@@ -145,6 +148,35 @@ pre {
     margin: 4px;
 }
 
+/* FOOTER */
+
+footer.bawah {
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: var(--text);
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+}
+footer.bawah button {
+    background: var(--standar);
+    color: var(--text);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+footer.bawah button:hover {
+    background: var(--tengah);
+}
+
+
+
 @media (min-width: 320px) and (max-width: 767px) {
     html {
         font-size: 75%;
@@ -154,10 +186,5 @@ pre {
     }
 
 
-    footer {
-        text-align: center;
-        justify-content: center;
-        justify-items: center;
-        align-items: center;
-    }
+    
 }
