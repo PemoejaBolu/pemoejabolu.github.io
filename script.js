@@ -1,6 +1,5 @@
 
 // NAVBAR SYSTEM
-
 function toggleClearButton() {
     let searchBar = document.getElementById("searchBar");
     let clearButton = document.getElementById("clearSearch");
@@ -22,7 +21,6 @@ function clearSearch() {
     daftarLagu.forEach(li => li.style.display = "block");
     lirikLagu.forEach(lirik => lirik.parentElement.parentElement.style.display = "block");
 }
-
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -120,12 +118,46 @@ function toggleTranspose() {
 }
 
 
-// TRANSPOSE CHORD
+// SEARCH
 
 
+document.addEventListener("DOMContentLoaded", function () {
+    const searchButton = document.querySelector("button[title='Cari Lagu']");
+    const clearSearchButton = document.getElementById("clearSearch");
+    const daftarIsi = document.getElementById("daftarLagu1"); // Pastikan ID sesuai
+    const daftarIsi2 = document.getElementById("daftarLagu2"); // Untuk daftar isi kedua
+    const toggleChordButton = document.getElementById("toggleChord");
+    
+    // 1. Klik tombol search, halaman langsung ke atas
+    searchButton.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
 
+    // 2. Jika tombol X di search ditekan, daftar isi akan disembunyikan
+    clearSearchButton.addEventListener("click", function () {
+        document.getElementById("searchBar").value = ""; // Mengosongkan input
+        daftarIsi.style.display = "none";
+        daftarIsi2.style.display = "none";
+    });
 
+    // 3. Toggle coretan tombol musik saat transpose aktif atau tidak
+    function toggleTranspose() {
+        const chords = document.querySelectorAll(".chord");
+        let isChordVisible = Array.from(chords).some(chord => chord.style.display !== "none");
 
+        chords.forEach(chord => {
+            chord.style.display = isChordVisible ? "none" : "inline";
+        });
+
+        if (isChordVisible) {
+            toggleChordButton.style.textDecoration = "line-through";
+        } else {
+            toggleChordButton.style.textDecoration = "none";
+        }
+    }
+
+    toggleChordButton.addEventListener("click", toggleTranspose);
+});
 
 
 // HIDE BUTON CHORD
@@ -207,3 +239,4 @@ function updateTransposeListeners() {
         transposeAllChords(-1);
     });
 }
+
