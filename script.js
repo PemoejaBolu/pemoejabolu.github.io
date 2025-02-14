@@ -140,28 +140,10 @@ document.addEventListener("DOMContentLoaded", function () {
         daftarIsi2.style.display = "none";
     });
 
-    // 3. Toggle coretan tombol musik saat transpose aktif atau tidak
-    function toggleTranspose() {
-        const chords = document.querySelectorAll(".chord");
-        let isChordVisible = Array.from(chords).some(chord => chord.style.display !== "none");
 
-        chords.forEach(chord => {
-            chord.style.display = isChordVisible ? "none" : "inline";
-        });
-
-        if (isChordVisible) {
-            toggleChordButton.style.textDecoration = "line-through";
-        } else {
-            toggleChordButton.style.textDecoration = "none";
-        }
-    }
-
-    toggleChordButton.addEventListener("click", toggleTranspose);
 });
 
-
-// HIDE BUTON CHORD
-
+// Baru
 
 document.addEventListener("DOMContentLoaded", function () {
     const songText = document.getElementById("songText");
@@ -198,6 +180,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     updateTransposeListeners(); // Pastikan event listener tetap aktif
 });
+
+
+// HIDE BUTON CHORD
+
+
+
 
 // Fungsi untuk mendeteksi chord dalam teks dan menandainya
 function formatSongText(text) {
